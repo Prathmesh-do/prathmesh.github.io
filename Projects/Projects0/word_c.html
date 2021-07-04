@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word counter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <style>
+        body{
+            padding: 50px 100px;
+            background-color: #4e4;
+        }
+        h1{
+            text-align: left;
+            background-color: #006f48;
+            color: whitesmoke;
+            padding: 10px;
+            margin: 0px;
+        }
+        #textbox{
+            width: 99.1%;
+            border-color:#006f48;
+        }
+        p{
+            text-align: inherit;
+            background-color:#006f48 ;
+            font-size: 25px;
+            font-weight: 100;
+            color:white;
+            padding: 10px;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <!--Responsive Navbar-->
+	<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
+		<div class="container">
+			<a href="../../index.html" class="navbar-brand">Prathmesh</a>
+			<button
+			 class="navbar-toggler" 
+			 type="button" 
+			 data-bs-toggle="collapse" 
+			 data-bs-target="#navmenu">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navmenu">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a href="#Code Shop" class="nav-link">Code Shop</a>
+					</li>
+					<li class="nav-item">
+						<a href="#Portfolio" class="nav-link">Portfolio</a>
+					</li>
+					<li class="nav-item">
+						<a href="#About" class="nav-link">About</a>
+					</li>
+					<li class="nav-item">
+						<a href="../projects.html" class="nav-link">Projects</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+    <h1 class="text-warning">Word and character counter</h1>
+    <div class="container">
+        <textarea id="textbox" cols="30" rows="10" style="font-size: 25px;"></textarea>
+        <br>
+        <p id="showdata" class="text-warning">
+            <span id="">0</span> words and 
+            <span>0</span> characters
+        </p>
+        <p id="showWordsCount"></p>
+        <br>
+        <button onclick="countwords()">Count char</button>
+    </div>
+    <script>
+        let textbox=document.getElementById("textbox");
+        textbox.addEventListener('input',function(){
+            var text=this.value
+        });
+        const countwords = () =>{
+            let noc = document.getElementById('textbox').value.length;
+            let now = document.getElementById('textbox').value;
+            now = now.match( /\w+/g );
+            now = now.length;
+            document.getElementById('showdata').innerHTML = " The total characters = " + noc;
+            document.getElementById('showWordsCount').innerHTML = " The total words = " + now;
+        }
+    </script>
+</body>
+</html>

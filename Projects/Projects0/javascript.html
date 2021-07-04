@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather Details</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	<style>
+		body{
+			background-color: #b8e;
+		}
+	</style>
+</head>
+<body>
+	<!--Responsive Navbar-->
+	<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
+		<div class="container">
+			<a href="../../index.html" class="navbar-brand">Prathmesh</a>
+			<button
+			 class="navbar-toggler" 
+			 type="button" 
+			 data-bs-toggle="collapse" 
+			 data-bs-target="#navmenu">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navmenu">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a href="#Code Shop" class="nav-link">Code Shop</a>
+					</li>
+					<li class="nav-item">
+						<a href="#Portfolio" class="nav-link">Portfolio</a>
+					</li>
+					<li class="nav-item">
+						<a href="#About" class="nav-link">About</a>
+					</li>
+					<li class="nav-item">
+						<a href="../projects.html" class="nav-link">Projects</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<section class="p-5">
+		<h1>Temperature</h1>
+		<h2 id="output" style="color: #641; font-size: 25px;"></h2>
+	</section>
+	<section class="p-5">
+		<h1>UV Index</h1>
+		<h2 id="uv" style="color: #684; font-size: 25px;"></h2>
+	</section>
+	<section class="p-5">
+		<h1>Wind direction</h1>
+		<h2 id="wind-dir" style="color: #d1a; font-size: 25px;"></h2>
+	</section>
+	<input class="form-control" id="city">
+	<button class="btn" onclick="show_temp()">Submit</button>
+	<script type="text/javascript">
+		function show_temp(){
+			city=document.getElementById("city").value;
+			url="http://api.weatherbit.io/v2.0/current?city="+city+"&key=4c5220d52afe4a69a3c57bebeffb2cb8";
+			httpRequest= new XMLHttpRequest;
+			httpRequest.open("GET",url);
+			httpRequest.send();
+			httpRequest.onreadystatechange = function(){
+				if (this.readyState==4 && this.status==200)
+				{
+					user_data = JSON.parse(this.responseText);
+					document.getElementById("output").innerHTML = user_data.data[0].temp;
+					document.getElementById("uv").innerHTML = user_data.data[0].uv;
+					document.getElementById("wind-dir").innerHTML = user_data.data[0].wind_dir;
+				}
+			}
+		}
+	</script>
+</body>
+</html>
